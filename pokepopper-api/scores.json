@@ -1,0 +1,22 @@
+[
+  {
+    "id": "399223a6-3f48-45e9-80bf-695b183df13c",
+    "name": "Ash",
+    "score": "9999"
+  },
+  {
+    "id": "93ab05f1-fff3-411f-92ae-55a3ed951ae6",
+    "name": "Pikachu",
+    "score": "500"
+  },
+  {
+    "id": "5af4b147-0a6b-4aea-ad1a-14f7d855f794",
+    "name": "Charmander",
+    "score": "100"
+  },
+  {
+    "id": "9e4279b0-1887-47fe-ac71-106ca84f3ad8",
+    "name": "Professor Oak",
+    "score": 380
+  }
+]

@@ -1,0 +1,675 @@
+@font-face {
+  font-family: "Pokemon";
+  src: url("/assets/font/PokemonSolid.ttf"), local("/assets/font/PokemonSolid.ttf");
+}
+
+@font-face {
+  font-family: "Pokemon-Hollow";
+  src: url("/assets/font/PokemonHollow.ttf"), local("/assets/font/PokemonHollow.ttf");
+}
+
+@font-face {
+  font-family: "AndyBold";
+  src: url("/assets/font/AndyBold.ttf"), local("/assets/font/AndyBold.ttf");
+}
+
+* {
+  margin: 0;
+  cursor: url("./Pokeball.cur"), auto;
+  font-family: "Pokemon";
+}
+
+body {
+  overflow: hidden;
+  font-weight: normal;
+  height: 100vh;
+  width: 100vw;
+}
+
+.App {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+}
+
+.game {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.game .playbox {
+  width: 0;
+}
+
+.fishbox {
+  z-index: 5;
+}
+
+.fish {
+  -webkit-transition-delay: .05s;
+          transition-delay: .05s;
+}
+
+.fish :not(:active) {
+  opacity: 100;
+  -webkit-transition: step-start;
+  transition: step-start;
+}
+
+.fish :active {
+  -webkit-animation: boing 300ms ease-in-out;
+          animation: boing 300ms ease-in-out;
+  -webkit-transition: step-end;
+  transition: step-end;
+}
+
+@-webkit-keyframes boing {
+  15%, 40%, 75%, 100% {
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    opacity: 100;
+  }
+  15% {
+    -webkit-transform: scale(1.9, 1.8);
+            transform: scale(1.9, 1.8);
+  }
+  40% {
+    -webkit-transform: scale(0.95, 0.95);
+            transform: scale(0.95, 0.95);
+  }
+  75% {
+    -webkit-transform: scale(1.05, 1);
+            transform: scale(1.05, 1);
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+    opacity: 0;
+  }
+}
+
+@keyframes boing {
+  15%, 40%, 75%, 100% {
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    opacity: 100;
+  }
+  15% {
+    -webkit-transform: scale(1.9, 1.8);
+            transform: scale(1.9, 1.8);
+  }
+  40% {
+    -webkit-transform: scale(0.95, 0.95);
+            transform: scale(0.95, 0.95);
+  }
+  75% {
+    -webkit-transform: scale(1.05, 1);
+            transform: scale(1.05, 1);
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes pop {
+  from {
+    opacity: 100;
+  }
+  to {
+    display: none;
+    -webkit-transform: scale(2) rotate(90deg);
+            transform: scale(2) rotate(90deg);
+    -webkit-transition: 0.15s;
+    transition: 0.15s;
+    opacity: 0;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 100;
+  }
+  to {
+    display: none;
+    -webkit-transform: scale(2) rotate(90deg);
+            transform: scale(2) rotate(90deg);
+    -webkit-transition: 0.15s;
+    transition: 0.15s;
+    opacity: 0;
+  }
+}
+
+.playbox {
+  margin: 0;
+}
+
+.playbox .scorebox {
+  color: white;
+}
+
+.playbox .scorebox .timer {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+}
+
+.playbox .scorebox .level {
+  position: fixed;
+  top: 4rem;
+  left: 2rem;
+}
+
+.playbox .scorebox .next-level {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.playbox .scorebox #totalscore {
+  position: fixed;
+  bottom: 4rem;
+  left: 2rem;
+}
+
+.playbox .scorebox #score {
+  opacity: 0;
+}
+
+.fishbox {
+  position: fixed;
+  left: -120px;
+}
+
+div.hidden {
+  display: none;
+  -webkit-transition: all 2s linear;
+  transition: all 2s linear;
+}
+
+.gameover__text {
+  opacity: 0;
+  font-size: 100px;
+  color: white;
+  -webkit-transition-delay: 2s;
+          transition-delay: 2s;
+  -webkit-animation: fade 5s 1 linear forwards;
+          animation: fade 5s 1 linear forwards;
+}
+
+.gameover__button {
+  text-align: right;
+  float: right;
+  color: white;
+  font-size: 2rem;
+  background-color: transparent;
+  padding: 5px;
+  border-radius: 20px;
+  border-color: transparent;
+  -webkit-animation: appear 3s 1 linear forwards;
+          animation: appear 3s 1 linear forwards;
+  -webkit-animation-delay: 6s;
+          animation-delay: 6s;
+  -webkit-transition-delay: 5s;
+          transition-delay: 5s;
+  opacity: 0;
+  -webkit-transition: ease;
+  transition: ease;
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+}
+
+.gameover__button:hover {
+  color: black;
+  background-color: white;
+}
+
+.gameover__karp {
+  -webkit-animation: appear 3s 1 linear forwards;
+          animation: appear 3s 1 linear forwards;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+  position: fixed;
+  opacity: 0;
+}
+
+@-webkit-keyframes fade {
+  from {
+    -webkit-transform: scale(10);
+            transform: scale(10);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 100;
+  }
+}
+
+@keyframes fade {
+  from {
+    -webkit-transform: scale(10);
+            transform: scale(10);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 100;
+  }
+}
+
+@-webkit-keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+  }
+}
+
+.fishmenu {
+  background-color: rgba(173, 216, 230, 0.7);
+  padding: 0 2% 2% 2%;
+  border-radius: 40px;
+  -webkit-transform: translateX(55.75vw);
+          transform: translateX(55.75vw);
+  position: fixed;
+  -webkit-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+  height: 85%;
+}
+
+.fishmenu:not(:active) {
+  -webkit-transform: translateX(55.75vw);
+          transform: translateX(55.75vw);
+}
+
+.fishmenu:active {
+  -webkit-transform: translateX(40vw);
+          transform: translateX(40vw);
+}
+
+.fishmenu button {
+  -webkit-transform: translateX(-100px);
+          transform: translateX(-100px);
+  font-size: 20px;
+  border-radius: 40px;
+  height: 2rem;
+}
+
+.fishmenu__items div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.leaderboard {
+  background-color: rgba(173, 216, 230, 0.7);
+  height: 75vh;
+  width: 40%;
+  border-radius: 40px;
+  border: 5px white solid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  text-transform: uppercase;
+  position: relative;
+  -webkit-animation: slide 3s 1 ease-in-out forwards;
+          animation: slide 3s 1 ease-in-out forwards;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+  opacity: 0;
+  padding-bottom: 2rem;
+}
+
+.leaderboard div div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  opacity: 0;
+  -webkit-animation: flash 0.1s cubic-bezier(0.1, 0.7, 1, 0.1) 1 forwards;
+          animation: flash 0.1s cubic-bezier(0.1, 0.7, 1, 0.1) 1 forwards;
+}
+
+.leaderboard__scorebox {
+  width: 55%;
+}
+
+.leaderboard__title {
+  font-size: 2.5rem;
+  color: black;
+  opacity: 0;
+  -webkit-animation: flash 0.1s cubic-bezier(0.1, 0.7, 1, 0.1) 1 forwards;
+          animation: flash 0.1s cubic-bezier(0.1, 0.7, 1, 0.1) 1 forwards;
+}
+
+.leaderboard__subtitle {
+  font-size: 1.5rem;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 2rem;
+}
+
+.leaderboard__subtitle span:nth-of-type(2) {
+  padding: inherit;
+}
+
+.leaderboard__myscore {
+  font-size: 1.5rem;
+  color: black;
+  opacity: 0;
+  -webkit-animation: flash 0.1s cubic-bezier(0.1, 0.7, 1, 0.1) 1 forwards;
+          animation: flash 0.1s cubic-bezier(0.1, 0.7, 1, 0.1) 1 forwards;
+  -webkit-animation-delay: 6s;
+          animation-delay: 6s;
+}
+
+.leaderboard img {
+  position: fixed;
+  top: 1vw;
+  right: 20vw;
+  opacity: 0;
+  -webkit-animation: appear 5s 1 ease-in-out forwards;
+          animation: appear 5s 1 ease-in-out forwards;
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+}
+
+.leaderboard button {
+  padding: 5px;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  width: 10rem;
+  border-radius: 40px;
+  border: white 5px solid;
+  position: absolute;
+  top: 96%;
+  left: 32%;
+}
+
+.leaderboard button:hover {
+  color: black;
+  background-color: white;
+}
+
+.leaderboard #score-form {
+  font-size: 1.3rem;
+  color: black;
+  opacity: 0;
+  -webkit-animation: flash 1s cubic-bezier(0.1, 0.7, 1, 0.1) 1 forwards;
+          animation: flash 1s cubic-bezier(0.1, 0.7, 1, 0.1) 1 forwards;
+  -webkit-animation-delay: 6.5s;
+          animation-delay: 6.5s;
+}
+
+.leaderboard #score-form input[type=submit] {
+  text-transform: uppercase;
+  background-color: black;
+  color: white;
+  border-radius: 0;
+  border: 1px black solid;
+  padding: 2px 6px 2px 6px;
+  font-size: 1rem;
+}
+
+.leaderboard #score-form input[type=text] {
+  text-align: center;
+  width: 10rem;
+  font-size: 1rem;
+  border: 2px black solid;
+}
+
+.leaderboard div:nth-of-type(0) {
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
+}
+
+.leaderboard div:nth-of-type(1) {
+  -webkit-animation-delay: 4.3s;
+          animation-delay: 4.3s;
+}
+
+.leaderboard div:nth-of-type(2) {
+  -webkit-animation-delay: 4.6s;
+          animation-delay: 4.6s;
+}
+
+.leaderboard div:nth-of-type(3) {
+  -webkit-animation-delay: 4.9s;
+          animation-delay: 4.9s;
+}
+
+.leaderboard div:nth-of-type(4) {
+  -webkit-animation-delay: 5.2s;
+          animation-delay: 5.2s;
+}
+
+.leaderboard div:nth-of-type(5) {
+  -webkit-animation-delay: 5.5s;
+          animation-delay: 5.5s;
+}
+
+.leaderboard div:nth-of-type(6) {
+  -webkit-animation-delay: 5.8s;
+          animation-delay: 5.8s;
+}
+
+.leaderboard div:nth-of-type(7) {
+  -webkit-animation-delay: 6.1s;
+          animation-delay: 6.1s;
+}
+
+@-webkit-keyframes slide {
+  from {
+    top: 0vh;
+    opacity: 0;
+    height: 5vh;
+  }
+  to {
+    top: 2vh;
+    opacity: 100;
+    height: 75vh;
+  }
+}
+
+@keyframes slide {
+  from {
+    top: 0vh;
+    opacity: 0;
+    height: 5vh;
+  }
+  to {
+    top: 2vh;
+    opacity: 100;
+    height: 75vh;
+  }
+}
+
+@-webkit-keyframes flash {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(2);
+            transform: scale(2);
+  }
+  to {
+    opacity: 100;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes flash {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(2);
+            transform: scale(2);
+  }
+  to {
+    opacity: 100;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@media only screen and (max-width: 1350px) {
+  .leaderboard {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .leaderboard {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .leaderboard__title {
+    font-size: 2rem;
+  }
+  .leaderboard__subtitle {
+    font-size: 1rem;
+  }
+  .leaderboard #score-form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .leaderboard #score-form input[type="submit"] {
+    margin-top: 1rem;
+  }
+}
+
+@media only screen and (max-width: 500) {
+  .leaderboard__title {
+    font-size: .5rem;
+  }
+  .leaderboard__subtitle {
+    font-size: 1rem;
+  }
+  .leaderboard #score-form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .leaderboard #score-form input[type="submit"] {
+    margin-top: 1rem;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .leaderboard {
+    width: 100%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  .leaderboard__title {
+    font-size: 1.7rem;
+  }
+  .leaderboard__subtitle {
+    font-size: 1.2rem;
+  }
+  .leaderboard__scorebox {
+    width: 90%;
+  }
+  .leaderboard__myscore span {
+    font-size: 1rem;
+  }
+  .leaderboard__scores span {
+    font-size: 1rem;
+  }
+  .leaderboard #score-form {
+    font-size: 1rem;
+  }
+  .leaderboard #score-form input[type="submit"] {
+    margin-top: .5rem;
+  }
+  .leaderboard button {
+    font-size: 1rem;
+    left: 25%;
+  }
+  .fishmenu {
+    display: none;
+  }
+  .scorebox h2 {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (orientation: portrait) {
+  .playbox .scorebox #totalscore {
+    bottom: 8rem;
+  }
+  .playbox .scorebox .next-level {
+    bottom: 6rem;
+  }
+}
+
+@media only screen and (orientation: portrait) and (min-height: 750px) {
+  .playbox .scorebox #totalscore {
+    bottom: 8rem;
+  }
+  .playbox .scorebox .next-level {
+    bottom: 6rem;
+  }
+}
+/*# sourceMappingURL=App.css.map */

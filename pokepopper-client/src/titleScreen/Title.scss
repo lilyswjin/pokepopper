@@ -1,0 +1,150 @@
+
+body {
+    font-family: 'pokemon'
+}
+
+.animate {
+	width: 100%;
+	margin: auto;
+	font-weight: 900;
+	text-align: center;
+    padding: 0 0 200px;
+    color: lightskyblue;
+    font-size: 50px;
+    z-index: 1;
+    top: 1rem;
+}
+
+.animate span {
+    display: inline-block;
+    
+}
+
+.animate img {
+	width: 6rem;
+	height: 6rem;
+}
+
+.animate span:nth-of-type(2) {
+	animation-delay: .05s;
+}
+.animate span:nth-of-type(3) {
+	animation-delay: .1s;
+}
+.animate span:nth-of-type(4) {
+	animation-delay: .15s;
+}
+.animate span:nth-of-type(5) {
+	animation-delay: .2s;
+}
+.animate span:nth-of-type(6) {
+	animation-delay: .25s;
+}
+.animate span:nth-of-type(7) {
+	animation-delay: .3s;
+}
+.animate span:nth-of-type(8) {
+	animation-delay: .35s;
+}
+.animate span:nth-of-type(9) {
+	animation-delay: .4s;
+}
+.animate span:nth-of-type(10) {
+	animation-delay: .45s;
+}
+.animate span:nth-of-type(11) {
+	animation-delay: .55s;
+}
+
+
+.animate {
+    animation-delay: 3s;
+}
+
+.tagline p {
+	animation-delay: 2s;
+}
+
+.tagline p.instructions {
+	animation-delay: .5s;
+	font-size: 3vw;
+}
+
+
+.animate span {
+    color: #ffcb05;
+    -webkit-text-stroke: 2px #2a75bb;
+    text-shadow: -3px 3px 2px black;
+    font-size: 6vw;
+	opacity: 0;
+	transform: translate(0, -100px) rotate(360deg) scale(0);
+	animation: revolveDrop .3s forwards;
+}
+
+.tagline p {
+  
+    -webkit-text-stroke: 2px #2a75bb;
+    color: white;
+    font-size: 4.5vw;
+    opacity: 0;
+	transform: translate(0, -100px) rotate(360deg) scale(0);
+	animation: revolveDrop .6s forwards;
+}
+
+img.karp {
+	transition: all 1s ease-in-out;
+	animation: roaming 10s infinite linear;
+	position: fixed;
+	transform: scaleX(-1);
+}
+
+img.karp-fast {
+	transition: 2s ease-in-out;
+	animation: roaming 2s infinite linear;
+	position: fixed;
+	transform: scaleX(-1);
+}
+
+@keyframes revolveDrop {
+	30% {
+		transform: translate(0, -50px) rotate(180deg) scale(1);
+	}
+
+	60% {
+		transform: translate(0, 20px) scale(.8) rotate(0deg);
+	}
+
+	100% {
+		transform: translate(0) scale(1) rotate(0deg);
+		opacity: 1;
+	}
+}
+
+@keyframes roaming {
+	0% {left:-5px;} 
+	100%{left:1600px;} 
+}
+
+
+@media only screen and (max-width: 700px) {
+
+	.animate {
+		padding-left: .5rem;
+		padding-right: .5rem;
+	}
+
+	.animate span {
+		font-size: 3.75rem;
+	}
+
+	.tagline p {
+		font-size: 2rem;
+	}
+
+	.tagline p.instructions {
+	
+		-webkit-text-stroke: 0px ;
+		font-size: 1.2rem;
+	}
+	
+}
